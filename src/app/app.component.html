@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Toastr style -->
+    <!--link href="css/plugins/toastr/toastr.min.css" rel="stylesheet"-->
+
+    <!-- Gritter -->
+    <!-- link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet" -->
+
+</head>
+
+<body [ngClass]="{ 'gray-bg' : !isAuthenticated}">
+
+    <div [id]="isAuthenticated ? 'wrapper' : ''" >
+        <!--app-menu-lateral [hidden]="!isAuthenticated"></app-menu-lateral-->
+
+        <div [id]="isAuthenticated ? 'wrapper' : ''" [ngClass]="{ 'gray-bg dashboard-1' : isAuthenticated}" >
+            <app-cabecalho [hidden]="!isAuthenticated"></app-cabecalho>
+            <router-outlet></router-outlet>
+            <app-rodape [hidden]="!isAuthenticated"></app-rodape>
+        </div>
+
+    </div>
+
+</body>
+</html>

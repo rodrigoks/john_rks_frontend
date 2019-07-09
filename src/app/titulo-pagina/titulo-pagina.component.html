@@ -1,0 +1,14 @@
+<div class="row wrapper border-bottom gray-titulo-bg page-heading">
+  <div class="col-lg-9">
+    <h2 class="color-font-titulo">{{ tituloModulo }}</h2>
+    <ol class="breadcrumb-gray">
+      <li><a routerLink="">Home</a></li>
+      <li class="color-font-titulo" *ngFor="let caminho of caminhoModulo" [hidden]="caminhoModulo == null && caminhoModulo?.length == 0">
+        {{ caminho }}
+      </li>
+      <li class="active" [hidden]="caminhoModulo == null && caminhoModulo?.length == 0">
+        <strong>{{ moduloAtual }}</strong>
+      </li>
+    </ol>
+  </div>
+</div>

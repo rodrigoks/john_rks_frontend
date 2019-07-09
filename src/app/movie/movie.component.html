@@ -1,0 +1,51 @@
+<app-titulo-pagina tituloModulo="SWAPI.CO" moduloAtual="swapi.co" [caminhoModulo]=""></app-titulo-pagina>
+
+<div class="wrapper wrapper-content">
+
+  <app-spinner [exibir]="loading"></app-spinner>
+
+  <div class="row">
+    <div class="{col-xs-12 col-sm-12 col-md-12 col-lg-12}">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5>Consultas</h5>
+            </div>
+            <div class="ibox-content">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                    <div class="form-group form-group-sm col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      <label for="movie">Movie Code</label>
+                      <input type="text" class="form-control" id="movie" name="movie"
+                        #movieModel="ngModel" [(ngModel)]="movie" >
+                    </div>
+                    <div class="form-group form-group-sm col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      <label for="character">Character Code</label>
+                      <input type="text" class="form-control" id="character" name="character"
+                        #characterModel="ngModel" [(ngModel)]="character" >
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                        <button type="submit" class="btn btn-primary" [disabled]="!(f.form.valid && f.form.dirty)">Consultar</button>
+                        <button type="button" class="btn btn-danger" (click)="limpar()">Limpar</button>
+                      </div>
+                    </div>
+                  </form>
+                  <!--app-form-debugger [form]="f"></app-form-debugger-->
+                </div>
+              </div>
+            </div>
+            
+            <div class="ibox-content inspinia-timeline animated fadeInRight" *ngIf="lstResult$ | async as lstResult">
+              <!-- <div class="wrapper wrapper-content " *ngIf="lstLogbooks$ | async as lstLogbooks">
+              </div> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
