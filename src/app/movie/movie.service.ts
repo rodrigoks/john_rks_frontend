@@ -24,13 +24,13 @@ export class MovieService extends HttpProviderService {
   }
 
   getMovies(movie: string, character: string): Observable<boolean | any> {
-    const url = `${AppSettings.HTTPS_URL}${this._urlConsultarMovies}`;
+    const url = `${AppSettings.HTTPS_URL}${this._urlConsultarMovies}?film_id=${movie}&character_id=${character}`;
 
-    let params = new HttpParams();
-    params = params.append('film_id', movie);
-    params = params.append('character_id', character);
+    // let params = new HttpParams();
+    // params = params.append('film_id', movie);
+    // params = params.append('character_id', character);
 
-    return this.get(url, null, params).pipe(
+    return this.get(url, null, null).pipe(
       catchError(error => this.handleError(error))
     );
   }

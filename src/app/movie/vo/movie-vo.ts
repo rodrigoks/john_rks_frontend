@@ -15,5 +15,5 @@ export class MovieVO {
 	created: string;
 	edited: string;
 	url: string;
-
+	
 }

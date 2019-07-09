@@ -8,6 +8,9 @@ import { AuthService } from '../login/auth.service';
 
 import { Auth } from '../login/vo/auth';
 import { MovieService } from './movie.service';
+import { ResponseVO } from './vo/response-vo';
+import { ResponseServiceVO } from '../common/vo/response-service-vo';
+import { PeopleVO } from './vo/people-vo';
 
 @Component({
   selector: 'app-movie',
@@ -17,7 +20,7 @@ import { MovieService } from './movie.service';
 })
 export class MovieComponent implements OnInit, OnDestroy {
 
-  lstResult$: Observable<any[]>;
+  result$: Observable<any[]>;
   movie: string;
   character: string;
   loading = false;
@@ -55,10 +58,13 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   onSubmit(form): void {
     this.loading = true;
-    this.lstResult$ = this._movieService.getMovies(this.movie, this.character).pipe(
+    this.result$ = this._movieService.getMovies(this.movie, this.character).pipe(
       map(
         response => {
-          console.log('log', response);
+          console.log('response', response);
+          if (response !== undefined && response !== null) {
+            this.setCharacters(response);
+          }
           this.loading = false;
           return response;
         }
@@ -66,10 +72,26 @@ export class MovieComponent implements OnInit, OnDestroy {
     );
   }
 
+  private setCharacters(response: ResponseVO): void {
+    let count: number = 1;
+    response.charactersView = '';
+    response.colPeople.forEach(
+      item => {
+        if (count < response.colPeople.length) {
+          response.charactersView += (item as PeopleVO).name + ', ';
+        } else {
+          response.charactersView += (item as PeopleVO).name;
+        }
+        count++;
+      }
+    );
+  }
+
   limpar(): void {
     this.movie = undefined;
     this.character = undefined;
-    this.lstResult$ = undefined;
+    this.result$ = undefined;
+    this.loading = false;
   }
 
 }

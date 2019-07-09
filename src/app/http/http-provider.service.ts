@@ -78,6 +78,7 @@ export class HttpProviderService {
 
   handleError(error: HttpErrorResponse | any): Observable<boolean | any> {
     let errMsg: string;
+    console.log('error', error);
     if (error instanceof HttpErrorResponse) {
       const body = error;
       if (body) {

@@ -8,5 +8,6 @@ export class ResponseVO {
 	people: PeopleVO;
 	specie: SpecieVO;
     colPeople: PeopleVO[];
+    charactersView: string = '';
     
 }

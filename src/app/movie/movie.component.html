@@ -38,9 +38,13 @@
               </div>
             </div>
             
-            <div class="ibox-content inspinia-timeline animated fadeInRight" *ngIf="lstResult$ | async as lstResult">
-              <!-- <div class="wrapper wrapper-content " *ngIf="lstLogbooks$ | async as lstLogbooks">
-              </div> -->
+            <div class="ibox-content inspinia-timeline animated fadeInRight" *ngIf="result$ | async as result">
+              <div class="jumbotron">
+                Movie: <h3>{{ result.movie.title }}</h3>
+                <!-- Character: <h3>{{ result.people.name }}</h3> -->
+                Specie: <h3>{{ result.specie.name }}</h3>
+                Other {{ result.specie.name }} Character: <h3>{{ result?.charactersView }}</h3>
+              </div>
             </div>
 
           </div>
