@@ -38,9 +38,6 @@ export class MovieComponent implements OnInit, OnDestroy {
       }
     })
 
-    console.log('movie', this.movie)
-    console.log('character', this.character);
-
   }
 
   ngOnDestroy() {
