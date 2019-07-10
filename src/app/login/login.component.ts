@@ -11,7 +11,7 @@ import { Auth } from './vo/auth';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  imgLogin = 'assets/img/johndeere.png';
+  imgLogin = 'assets/img/sw.jpeg';
   auth: Auth = new Auth();
   isLogin = true;
 
