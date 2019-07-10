@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 import { AppRoutingModule } from './app.routing.module';
 import { CabecalhoModule} from './cabecalho/cabecalho.module';
@@ -27,15 +26,7 @@ registerLocaleData(localePt, 'pt-BR');
     CabecalhoModule,
     RodapeModule,
     AppRoutingModule,
-    ToastrModule.forRoot(),
-    SweetAlert2Module.forRoot(
-      // {
-      //   buttonsStyling: false,
-      //   customClass: 'modal-content',
-      //   confirmButtonClass: 'btn btn-primary',
-      //   cancelButtonClass: 'btn'
-      // }
-    )
+    ToastrModule.forRoot()
   ],
   declarations: [
     AppComponent,

@@ -25,7 +25,6 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/font-awesome/css/font-awesome.css",
-              "node_modules/metismenu/dist/metisMenu.css",
               "node_modules/ngx-toastr/toastr.css",
               "src/assets/css/animate.css",
               "src/styles.css"
@@ -33,9 +32,6 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/metismenu/dist/metisMenu.js",
-              "node_modules/jquery-slimscroll/jquery.slimscroll.min.js",
-              "node_modules/sweetalert2/dist/sweetalert2.js",
               "src/assets/js/inspinia.js"
             ]
           },

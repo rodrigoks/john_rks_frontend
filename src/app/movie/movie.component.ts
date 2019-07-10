@@ -60,7 +60,6 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.result$ = this._movieService.getMovies(this.movie, this.character).pipe(
       map(
         response => {
-          console.log('response', response);
           if (response !== undefined && response !== null) {
             this.setCharacters(response);
           }
