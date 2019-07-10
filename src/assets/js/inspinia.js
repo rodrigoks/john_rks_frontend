@@ -15,9 +15,6 @@ $(document).ready(function () {
         $('body').removeClass('body-small')
     }
 
-    // MetisMenu
-    $('#side-menu').metisMenu();
-
     // Collapse ibox function
     $('.collapse-link').on('click', function () {
         var ibox = $(this).closest('div.ibox');
@@ -56,34 +53,15 @@ $(document).ready(function () {
         SmoothlyMenu();
     });
 
-    // Run menu of canvas
-    $('body.canvas-menu .sidebar-collapse').slimScroll({
-        height: '100%',
-        railOpacity: 0.9
-    });
-
     // Open close right sidebar
     $('.right-sidebar-toggle').on('click', function () {
         $('#right-sidebar').toggleClass('sidebar-open');
-    });
-
-    // Initialize slimscroll for right sidebar
-    $('.sidebar-container').slimScroll({
-        height: '100%',
-        railOpacity: 0.4,
-        wheelStep: 10
     });
 
     // Open close small chat
     $('.open-small-chat').on('click', function () {
         $(this).children().toggleClass('fa-comments').toggleClass('fa-remove');
         $('.small-chat-box').toggleClass('active');
-    });
-
-    // Initialize slimscroll for small chat
-    $('.small-chat-box .content').slimScroll({
-        height: '234px',
-        railOpacity: 0.4
     });
 
     // Small todo handler
@@ -144,16 +122,6 @@ $(document).ready(function () {
 
     fix_height();
 
-    // Fixed Sidebar
-    $(window).bind("load", function () {
-        if ($("body").hasClass('fixed-sidebar')) {
-            $('.sidebar-collapse').slimScroll({
-                height: '100%',
-                railOpacity: 0.9
-            });
-        }
-    });
-
     // Move right sidebar top after scroll
     $(window).scroll(function () {
         if ($(window).scrollTop() > 0 && !$('body').hasClass('fixed-nav')) {
@@ -172,10 +140,6 @@ $(document).ready(function () {
     $("[data-toggle=popover]")
         .popover();
 
-    // Add slimscroll to element
-    $('.full-height-scroll').slimscroll({
-        height: '100%'
-    })
 });
 
 
@@ -203,10 +167,6 @@ $(document).ready(function () {
 
         if (fixedsidebar == 'on') {
             body.addClass('fixed-sidebar');
-            $('.sidebar-collapse').slimScroll({
-                height: '100%',
-                railOpacity: 0.9
-            });
         }
 
         if (collapse == 'on') {

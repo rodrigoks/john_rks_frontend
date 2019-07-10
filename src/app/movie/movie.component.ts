@@ -3,11 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { AlertService } from '../utils/alert.service';
-import { AuthService } from '../login/auth.service';
-
-import { Auth } from '../login/vo/auth';
 import { MovieService } from './movie.service';
+
 import { ResponseVO } from './vo/response-vo';
 import { PeopleVO } from './vo/people-vo';
 
@@ -23,31 +20,26 @@ export class MovieComponent implements OnInit, OnDestroy {
   movie: string;
   character: string;
   loading = false;
-  auth: Auth;
 
   private _paramSubs: Subscription;
 
   constructor(
     private _activateRoute: ActivatedRoute,
-    private _movieService: MovieService,
-    private _alertService: AlertService,
-    private _authService: AuthService,
+    private _movieService: MovieService
   ) { }
 
   ngOnInit() {
 
-    this._paramSubs = this._activateRoute.params.subscribe(
-      (params: any) => {
-        // if (params['filtro']) {
-        //   this._filtro = params['filtro'];
-        // } else {
-        //   this._filtro = undefined;
-        // }
-        // this.consultarLogbooks();
+    this._paramSubs = this._activateRoute.queryParamMap.subscribe(params => {
+      this.movie = params.get('film_id');
+      this.character = params.get('character_id');
+      if(this.movie !== undefined && this.movie !== null && this.character !== undefined && this.character !== null) {
+        this.onSubmit();
       }
-    );
+    })
 
-    this.auth = this._authService.getAuth();
+    console.log('movie', this.movie)
+    console.log('character', this.character);
 
   }
 
@@ -55,7 +47,7 @@ export class MovieComponent implements OnInit, OnDestroy {
     this._paramSubs.unsubscribe();
   }
 
-  onSubmit(form): void {
+  onSubmit(): void {
     this.loading = true;
     this.result$ = this._movieService.getMovies(this.movie, this.character).pipe(
       map(
