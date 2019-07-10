@@ -9,7 +9,6 @@ import { AuthService } from '../login/auth.service';
 import { Auth } from '../login/vo/auth';
 import { MovieService } from './movie.service';
 import { ResponseVO } from './vo/response-vo';
-import { ResponseServiceVO } from '../common/vo/response-service-vo';
 import { PeopleVO } from './vo/people-vo';
 
 @Component({
@@ -67,8 +66,7 @@ export class MovieComponent implements OnInit, OnDestroy {
           }
           this.loading = false;
           return response;
-        }
-      )
+        })
     );
   }
 

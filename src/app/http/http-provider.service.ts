@@ -78,22 +78,25 @@ export class HttpProviderService {
 
   handleError(error: HttpErrorResponse | any): Observable<boolean | any> {
     let errMsg: string;
-    console.log('error', error);
     if (error instanceof HttpErrorResponse) {
       const body = error;
       if (body) {
         if (body.status === AppSettings.UNAUTHORIZED) {
-          this.alert.errorEventEmitter.emit(body.error.description);
+          this.alert.errorEventEmitter.emit(body.error);
           this.router.navigate(['/login']);
           return observableThrowError('');
         } else if (body.status === AppSettings.FORBIDDEN) {
-          this.alert.errorEventEmitter.emit(body.error.description);
+          this.alert.errorEventEmitter.emit(body.error);
+          return observableThrowError('');
+        } else if (body.status === AppSettings.BAD_REQUEST) {
+          this.alert.errorEventEmitter.emit(body.error);
           return observableThrowError('');
         }
       }
-      // this.unAuthorizedUser(body);
-      const err = body.error.description || JSON.stringify(body);
+
+      const err = body.error || JSON.stringify(body);
       errMsg = `${err}`;
+      
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
@@ -112,12 +115,6 @@ export class HttpProviderService {
       }
       return;
     }
-  }
-
-  downloadFile(response: ResponseServiceVO) {
-    const byteArray = new Uint8Array(response.data.fileArray);
-    const blob = new Blob([byteArray], { type: 'application/octet-stream' });
-    FileSaver.saveAs(blob, response.data.nomeRelatorio);
   }
 
 }
