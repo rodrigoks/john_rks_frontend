@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subscription, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { AlertService } from '../utils/alert.service';
 import { AuthService } from '../login/auth.service';
@@ -66,6 +66,10 @@ export class MovieComponent implements OnInit, OnDestroy {
           }
           this.loading = false;
           return response;
+        }),
+        catchError(error => {
+          this.loading = false;
+          return of();
         })
     );
   }

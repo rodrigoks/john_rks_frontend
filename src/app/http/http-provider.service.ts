@@ -1,16 +1,13 @@
-import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
-
-import * as FileSaver from 'file-saver';
+import { throwError as observableThrowError,  Observable } from 'rxjs';
 
 import { AppSettings } from './../common/constantes/app-settings';
 
 import { AlertService } from './../utils/alert.service';
 
 import { Auth } from './../login/vo/auth';
-import { ResponseServiceVO } from '../common/vo/response-service-vo';
 
 @Injectable()
 export class HttpProviderService {
@@ -96,7 +93,7 @@ export class HttpProviderService {
 
       const err = body.error || JSON.stringify(body);
       errMsg = `${err}`;
-      
+
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
@@ -105,13 +102,13 @@ export class HttpProviderService {
 
   }
 
-  unAuthorizedUser(body: ResponseServiceVO) {
-    if (body) {
-      if (body.statusCodeResponse === AppSettings.UNAUTHORIZED) {
-        this.alert.errorEventEmitter.emit(body.description);
+  unAuthorizedUser(error: HttpErrorResponse | any) {
+    if (error) {
+      if (error.status === AppSettings.UNAUTHORIZED) {
+        this.alert.errorEventEmitter.emit(error.error);
         this.router.navigate(['/login']);
-      } else if (body.statusCodeResponse === AppSettings.FORBIDDEN) {
-        this.alert.errorEventEmitter.emit(body.description);
+      } else if (error.status === AppSettings.FORBIDDEN) {
+        this.alert.errorEventEmitter.emit(error.error);
       }
       return;
     }
