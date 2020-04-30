@@ -23,7 +23,7 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-toastr": "^9.1.1",
     "rxjs": "^6.5.2",
     "ts-md5": "^1.2.4",
